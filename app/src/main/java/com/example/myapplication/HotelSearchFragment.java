@@ -83,7 +83,6 @@ public class HotelSearchFragment extends Fragment {
     }
 
 
-
     private String getDateFromCalendar(DatePicker datePicker) {
         int day = datePicker.getDayOfMonth();
         int month = datePicker.getMonth();

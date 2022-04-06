@@ -4,21 +4,32 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+import retrofit.Callback;
+import java.util.ArrayList;
+import java.util.List;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class HotelListFragment extends Fragment {
 
     View view;
     TextView fragmentTextView;
+    ProgressBar progressBar;
+    List<HotelListData> userListResponseData;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.hotel_list_layout, container, false);
+        view = inflater.inflate(R.layout.hotel_list_fragment, container, false);
         return view;
     }
 
@@ -31,8 +42,56 @@ public class HotelListFragment extends Fragment {
         String numberOfGuests = bundle.getString("number of guests");
         String guestName = bundle.getString("name of guest");
 
-
         fragmentTextView = view.findViewById(R.id.hotel_fragment_text_view);
         fragmentTextView.setText(checkInDate + checkOutDate + numberOfGuests + guestName);
+
+        progressBar = view.findViewById(R.id.progress_bar);
+
+        getHotelsListsData();
+        setupRecyclerView();
+
+    }
+    public ArrayList<HotelListData> initHotelListData() {
+        ArrayList<HotelListData> list = new ArrayList<>();
+
+        list.add(new HotelListData("Halifax Regional Hotel", "2000$", "true"));
+        list.add(new HotelListData("Hotel Pearl", "500$", "false"));
+        list.add(new HotelListData("Hotel Amano", "800$", "true"));
+        list.add(new HotelListData("San Jones", "250$", "false"));
+        list.add(new HotelListData("Halifax Regional Hotel", "2000$", "true"));
+        list.add(new HotelListData("Hotel Pearl", "500$", "false"));
+        list.add(new HotelListData("Hotel Amano", "800$", "true"));
+        list.add(new HotelListData("San Jones", "250$", "false"));
+
+        return list;
+    }
+    private void getHotelsListsData() {
+        progressBar.setVisibility(View.VISIBLE);
+        Api.getClient().getHotelsLists(new Callback<List<HotelListData>>() {
+            @Override
+            public void success(List<HotelListData> userListResponses, Response response) {
+                // In this method we will get the response from API
+                userListResponseData = userListResponses;
+
+
+                // Set up the RecyclerView
+                //setupRecyclerView();
+            }
+
+            @Override
+            public void failure(RetrofitError error) {
+                // if error occurs in network transaction then we can get the error in this method.
+                Toast.makeText(getActivity(), error.toString(), Toast.LENGTH_LONG).show();
+
+            }
+        });
+    }
+    private void setupRecyclerView() {
+        progressBar.setVisibility(View.GONE);
+        RecyclerView recyclerView = view.findViewById(R.id.hotel_list_recyclerView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        HotelListAdapter hotelListAdapter = new HotelListAdapter(getActivity(),initHotelListData());
+        recyclerView.setAdapter(hotelListAdapter);
+
     }
 }
