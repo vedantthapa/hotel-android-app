@@ -16,10 +16,11 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HotelListFragment extends Fragment {
+public class HotelListFragment extends Fragment implements ItemClickListener{
 
     View view;
     TextView fragmentTextView;
@@ -93,5 +94,33 @@ public class HotelListFragment extends Fragment {
         HotelListAdapter hotelListAdapter = new HotelListAdapter(getActivity(),initHotelListData());
         recyclerView.setAdapter(hotelListAdapter);
 
+        //Bind the click listener
+        hotelListAdapter.setClickListener(this::onClick);
+
     }
+    @Override
+    public void onClick(View view, int position) {
+        HotelListData hotelListData = initHotelListData().get(position);
+
+        String hotelName = hotelListData.getHotel_name();
+        String price = hotelListData.getPrice();
+        String availability = hotelListData.getAvailability();
+
+        Bundle bundle = new Bundle();
+        bundle.putString("hotel name", hotelName);
+        bundle.putString("hotel price", price);
+        bundle.putString("hotel availability", availability);
+
+        GuestDetailsFragment guestDetailsFragment = new GuestDetailsFragment();
+        guestDetailsFragment.setArguments(bundle);
+
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.remove(HotelListFragment.this);
+        fragmentTransaction.replace(R.id.main_layout, guestDetailsFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commitAllowingStateLoss();
+
+    }
+
+
 }

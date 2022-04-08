@@ -76,7 +76,6 @@ public class HotelSearchFragment extends Fragment {
                 fragmentTransaction.remove(HotelSearchFragment.this);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-
             }
         });
 
