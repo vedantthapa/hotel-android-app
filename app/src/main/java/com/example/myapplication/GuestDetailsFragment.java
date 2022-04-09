@@ -77,30 +77,6 @@ public class GuestDetailsFragment extends Fragment {
         guestSubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean isValid = true;
-
-//                guestNameEditText = view.findViewById(R.id.guest_name_edit_text);
-//                guestAgeEditText = view.findViewById(R.id.guest_age_edit_text);
-//
-//                guestName = guestNameEditText.getText().toString();
-//                guestAge = guestAgeEditText.getText().toString();
-//
-//
-//                if (guestName.isEmpty()){
-//                    guestNameLayout.setError("This field is mandatory");
-//                    isValid = false;
-//                } else {
-//                    guestNameLayout.setErrorEnabled(false);
-//                }
-//
-//                if (guestAge.isEmpty()){
-//                    guestAgeLayout.setError("This field is mandatory");
-//                    isValid = false;
-//                } else {
-//                    guestAgeLayout.setErrorEnabled(false);
-//                }
-
-                if (isValid){
                     ArrayList<GuestListData> guestsData = guestListAdapter.getGuestList();
                     ReservationData reservationData = new ReservationData(hotelName, checkinDate, checkoutDate, guestsData);
                     progressBar.setVisibility(View.VISIBLE);
@@ -129,7 +105,7 @@ public class GuestDetailsFragment extends Fragment {
                             Log.e("Confirmation failure",error.toString());
                         }
                     });
-                }
+
 
             }
         });
@@ -138,10 +114,6 @@ public class GuestDetailsFragment extends Fragment {
         setupRecyclerView();
     }
 
-    public ArrayList<GuestListData> initGuestListData() {
-        ArrayList<GuestListData> list = new ArrayList<>();
-        return list;
-    }
 
     private void setupRecyclerView() {
         progressBar.setVisibility(View.GONE);

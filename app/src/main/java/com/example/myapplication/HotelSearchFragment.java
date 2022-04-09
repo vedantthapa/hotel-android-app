@@ -19,6 +19,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -80,6 +82,12 @@ public class HotelSearchFragment extends Fragment {
                 }
                 if (checkOutFormatted.before(checkInFormatted)){
                     Toast.makeText(getActivity(), "CheckOut must be greater than CheckIn", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Date currDate = new Date();
+                if (checkInFormatted.before(currDate)){
+                    Toast.makeText(getActivity(), "CheckIn must be happen after today", Toast.LENGTH_LONG).show();
                     return;
                 }
 
