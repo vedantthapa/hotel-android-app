@@ -4,6 +4,10 @@
 
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="18dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/bg_border"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,39 +15,51 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="10dp">
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="25dp">
 
         <TextView
             android:id="@+id/hotel_name_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/hotel_name"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Hotel Name"
-            android:textSize="20sp"
-            android:textColor="@color/black"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/price_text_view"
+            android:id="@+id/hotel_city_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/hotel_name_text_view"
             app:layout_constraintStart_toStartOf="@id/hotel_name_text_view"
-            android:text="Price"
+            android:text="@string/hotel_city"
             android:textSize="20sp"
             android:textColor="@color/black"/>
 
         <TextView
-            android:id="@+id/availability_text_view"
+            android:id="@+id/hotel_email_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/hotel_name_text_view"
-            app:layout_constraintBottom_toBottomOf="@id/price_text_view"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="Availability"
-            android:layout_marginRight="10dp"
+            android:text="@string/hotel_email"
+            android:textColor="#9575CD"
             android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@id/hotel_city_text_view"
+            app:layout_constraintTop_toBottomOf="@id/hotel_city_text_view" />
+
+        <TextView
+            android:id="@+id/hotel_price_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@string/hotel_price"
+            android:textSize="30sp"
             android:textColor="@color/black"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

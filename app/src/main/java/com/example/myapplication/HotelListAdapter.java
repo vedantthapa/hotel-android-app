@@ -21,6 +21,7 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
     HotelListAdapter(Context context, List<HotelListData> hotelListData) {
         this.layoutInflater = LayoutInflater.from(context);
         this.hotelListData = hotelListData;
+
     }
 
     @NonNull
@@ -32,14 +33,16 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull HotelListAdapter.ViewHolder holder, int position) {
-        String hotelName = hotelListData.get(position).getHotel_name();
-        String hotelPrice = hotelListData.get(position).getPrice();
-        String hotelAvailability = hotelListData.get(position).getAvailability();
+        String hotelName = hotelListData.get(position).getName();
+        String hotelCity = hotelListData.get(position).getCity();
+        String hotelEmail = hotelListData.get(position).getEmail();
+        Float hotelPrice = hotelListData.get(position).getPrice();
 
         // set up the text
         holder.hotelName.setText(hotelName);
-        holder.hotelAvailability.setText(hotelAvailability);
-        holder.hotelPrice.setText(hotelPrice);
+        holder.hotelEmail.setText(hotelEmail);
+        holder.hotelCity.setText(hotelCity);
+        holder.hotelPrice.setText("$ " + hotelPrice.toString());
     }
 
     @Override
@@ -58,13 +61,14 @@ public class HotelListAdapter extends RecyclerView.Adapter<HotelListAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        TextView hotelName, hotelPrice, hotelAvailability;
+        TextView hotelName, hotelCity, hotelEmail, hotelPrice;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             hotelName = itemView.findViewById(R.id.hotel_name_text_view);
-            hotelPrice = itemView.findViewById(R.id.price_text_view);
-            hotelAvailability = itemView.findViewById(R.id.availability_text_view);
+            hotelCity = itemView.findViewById(R.id.hotel_city_text_view);
+            hotelEmail = itemView.findViewById(R.id.hotel_email_text_view);
+            hotelPrice = itemView.findViewById(R.id.hotel_price_text_view);
 
             itemView.setOnClickListener(this);
 

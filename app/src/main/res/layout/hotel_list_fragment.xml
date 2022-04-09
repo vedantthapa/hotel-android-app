@@ -13,19 +13,34 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/hotel_fragment_greet_text_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/sample_text"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="32sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/hotel_fragment_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="20dp"
-                android:textSize="25sp"
-                android:textAlignment="center"
-                android:gravity="center_horizontal"
-                android:text = "@string/sample_text"
-                android:fontFamily="sans-serif"
-                android:textColor="@color/black"/>
+                android:text="@string/sample_text"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@id/hotel_fragment_greet_text_view"/>
+
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/hotel_list_recyclerView"
@@ -34,8 +49,7 @@
                 app:layout_constraintTop_toBottomOf="@id/hotel_fragment_text_view"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="15dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
